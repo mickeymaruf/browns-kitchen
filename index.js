@@ -17,11 +17,12 @@ const run = async () => {
     try {
         const database = client.db("brownsKitchen");
         const serviceCollection = database.collection("services");
+        const reviewCollection = database.collection("reviews");
 
         // get services
         app.get('/services', async (req, res) => {
             const size = parseInt(req.query.size);
-            const cursor = serviceCollection.find({}).limit(size);
+            const cursor = serviceCollection.find({}).sort({ _id: -1 }).limit(size);
             const services = await cursor.toArray();
             res.json({
                 "status": "success",
@@ -42,6 +43,24 @@ const run = async () => {
             const service = req.body;
             service.is_new = true;
             const result = await serviceCollection.insertOne(service);
+            res.send(result);
+        })
+
+        // get reviews by service id
+        app.get('/reviews/:service_id', async (req, res) => {
+            const service_id = req.params.service_id;
+            const query = { service: service_id };
+            const cursor = reviewCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send({
+                "status": "success",
+                "data": reviews
+            });
+        })
+        // create review
+        app.post('/reviews', async (req, res) => {
+            const review = req.body;
+            const result = await reviewCollection.insertOne(review);
             res.send(result);
         })
     }
