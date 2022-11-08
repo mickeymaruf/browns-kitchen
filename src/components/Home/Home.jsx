@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import banner from '../../assets/images/banner-removebg-preview.png';
 import customer from '../../assets/images/customer.png';
-import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
+
+import ServiceCard from '../Services/ServiceCard';
 
 const Home = () => {
+    const dishes = useLoaderData().data;
     return (
         <div>
             <div className="w-10/12 max-w-screen-xl mx-auto grid grid-cols-2 items-center justify-between pb-20">
@@ -26,63 +27,9 @@ const Home = () => {
                 <div className='w-10/12 max-w-screen-xl mx-auto '>
                     <h3 className='text-3xl font-medium mb-5 text-black'>Popular Foods</h3>
                     <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
-                        <div className="card bg-base-100 shadow-xl">
-                            <PhotoProvider>
-                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
-                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
-                                </PhotoView>
-                            </PhotoProvider>
-                            <div className="card-body">
-                                <div className="card-actions">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
-                                <h2 className="card-title">
-                                    Shoes!
-                                    <div className="badge badge-secondary">NEW</div>
-                                </h2>
-                                <small>If a dog chews shoes whose shoes does he choose?</small>
-                                <button className='btn btn-theme'>Details</button>
-                            </div>
-                        </div>
-                        <div className="card bg-base-100 shadow-xl">
-                            <PhotoProvider>
-                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
-                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
-                                </PhotoView>
-                            </PhotoProvider>
-                            <div className="card-body">
-                                <div className="card-actions">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
-                                <h2 className="card-title">
-                                    Shoes!
-                                    <div className="badge badge-secondary">NEW</div>
-                                </h2>
-                                <small>If a dog chews shoes whose shoes does he choose?</small>
-                                <button className='btn btn-theme'>Details</button>
-                            </div>
-                        </div>
-                        <div className="card bg-base-100 shadow-xl">
-                            <PhotoProvider>
-                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
-                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
-                                </PhotoView>
-                            </PhotoProvider>
-                            <div className="card-body">
-                                <div className="card-actions">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
-                                <h2 className="card-title">
-                                    Shoes!
-                                    <div className="badge badge-secondary">NEW</div>
-                                </h2>
-                                <small>If a dog chews shoes whose shoes does he choose?</small>
-                                <button className='btn btn-theme'>Details</button>
-                            </div>
-                        </div>
+                        {
+                            dishes.map(dish => <ServiceCard key={dish._id} dish={dish} />)
+                        }
                     </div>
                     <div className='mt-12 flex justify-center'>
                         <Link to="/services"><button className="btn btn-theme">See All</button></Link>
