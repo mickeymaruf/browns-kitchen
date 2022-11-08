@@ -5,3 +5,11 @@
 .btn-theme:hover{
     @apply bg-orange-600;
 }
+
+.btn-review{
+    @apply bg-orange-500 border-0 text-white;
+}
+
+.btn-review:hover{
+    @apply bg-orange-600;
+}

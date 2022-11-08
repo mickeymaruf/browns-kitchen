@@ -4,7 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useAuth } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
-import Review from './Review';
+import Review from '../Reviews/Review';
 
 const ServiceDetails = () => {
     const { user } = useAuth();
@@ -18,6 +18,8 @@ const ServiceDetails = () => {
     const onSubmit = data => {
         data.user = { email: user.email, name: user.displayName, image: user.photoURL };
         data.service = _id;
+        data.service_name = name;
+        data.service_image = image;
         fetch('http://localhost:5000/reviews', {
             method: "POST",
             headers: {
@@ -27,8 +29,9 @@ const ServiceDetails = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.acknowledged === true) {
+                if (data.result.acknowledged === true) {
                     reset();
+                    setReviews([data.review, ...reviews]);
                     toast.success("Review added!");
                 }
             })

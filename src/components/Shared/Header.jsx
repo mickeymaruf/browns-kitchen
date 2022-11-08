@@ -35,7 +35,7 @@ const Navbar = () => {
                         user && user.uid &&
                         <>
                             <li className='hover:text-orange-500'><Link to="/add-service">Add Services</Link></li>
-                            <li className='hover:text-orange-500'><Link to="/">My Reviews</Link></li>
+                            <li className='hover:text-orange-500'><Link to="/myReviews">My Reviews</Link></li>
                         </>
                     }
                 </ul>

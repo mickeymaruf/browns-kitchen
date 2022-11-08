@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import Home from "../components/Home/Home";
+import MyReviews from "../components/Reviews/MyReviews";
 import AddService from "../components/Services/AddService";
 import ServiceDetails from "../components/Services/ServiceDetails";
 import Services from "../components/Services/Services";
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: "add-service",
                 element: <RequireAuth><AddService /></RequireAuth>,
+            },
+            {
+                path: "myReviews",
+                element: <RequireAuth><MyReviews /></RequireAuth>,
             },
             {
                 path: "login",
