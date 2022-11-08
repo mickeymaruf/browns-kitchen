@@ -57,11 +57,22 @@ const run = async () => {
                 "data": reviews
             });
         })
+        // get reviews by user email
+        app.get('/reviews', async (req, res) => {
+            const email = req.query.email;
+            const query = { 'user.email': email };
+            const cursor = reviewCollection.find(query);
+            const reviews = await cursor.toArray();
+            res.send({
+                "status": "success",
+                "data": reviews
+            });
+        })
         // create review
         app.post('/reviews', async (req, res) => {
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
-            res.send(result);
+            res.send({ result, review });
         })
     }
     finally {
