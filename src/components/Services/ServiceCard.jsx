@@ -2,8 +2,8 @@ import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
 
-const ServiceCard = ({ dish }) => {
-    const { _id, name, image, is_new, price, desc } = dish;
+const ServiceCard = ({ service }) => {
+    const { _id, name, image, is_new, price, desc } = service;
     return (
         <div className="card bg-base-100 shadow-xl">
             <PhotoProvider>

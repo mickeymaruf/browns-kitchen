@@ -15,7 +15,7 @@ const Register = () => {
         const password = form.password.value;
         register(email, password)
             .then(result => {
-                const user = result.user;
+                // const user = result.user;
                 updateUser(name, photoURL)
                     .then(() => {
                         form.reset();

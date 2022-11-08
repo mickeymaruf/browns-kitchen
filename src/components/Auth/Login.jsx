@@ -15,7 +15,6 @@ const Login = () => {
         const password = form.password.value;
         login(email, password)
             .then(result => {
-                const user = result.user;
                 navigate("/");
             })
             .catch(error => {

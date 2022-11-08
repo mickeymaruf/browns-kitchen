@@ -6,7 +6,7 @@ import customer from '../../assets/images/customer.png';
 import ServiceCard from '../Services/ServiceCard';
 
 const Home = () => {
-    const dishes = useLoaderData().data;
+    const services = useLoaderData().data;
     return (
         <div>
             <div className="w-10/12 max-w-screen-xl mx-auto grid grid-cols-2 items-center justify-between pb-20">
@@ -28,7 +28,7 @@ const Home = () => {
                     <h3 className='text-3xl font-medium mb-5 text-black'>Popular Foods</h3>
                     <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {
-                            dishes.map(dish => <ServiceCard key={dish._id} dish={dish} />)
+                            services.map(service => <ServiceCard key={service._id} service={service} />)
                         }
                     </div>
                     <div className='mt-12 flex justify-center'>

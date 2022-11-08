@@ -16,17 +16,17 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/dishes?size=3')
+                loader: () => fetch('http://localhost:5000/services?size=3')
             },
             {
                 path: "services",
                 element: <Services />,
-                loader: () => fetch('http://localhost:5000/dishes')
+                loader: () => fetch('http://localhost:5000/services')
             },
             {
                 path: "services/:id",
                 element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/dishes/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path: "add-service",

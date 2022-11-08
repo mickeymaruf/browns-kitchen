@@ -1,10 +1,12 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { useAuth } from '../../contexts/AuthProvider';
 
 const ServiceDetails = () => {
-    const dish = useLoaderData().data;
-    const { _id, name, image, is_new, price, desc } = dish;
+    const { user } = useAuth()
+    const service = useLoaderData().data;
+    const { name, image, is_new, price, desc } = service;
     return (
         <div className='w-10/12 max-w-screen-xl mx-auto mb-20'>
             <div className='grid grid-cols-3 items-center gap-10 py-10 mb-10'>
@@ -52,10 +54,15 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
-                <form className='w-1/2 mt-8'>
-                    <textarea className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review"></textarea>
-                    <button className='btn btn-theme mt-2'>Submit</button>
-                </form>
+                {
+                    user && user.uid ?
+                        <form className='w-1/2 mt-8'>
+                            <textarea className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review"></textarea>
+                            <button className='btn btn-theme mt-2'>Submit</button>
+                        </form>
+                        :
+                        <p className='mt-5 pl-3 font-medium'>Please <Link className='font-bold underline text-orange-500' to="/login">Login</Link> to submit a review.</p>
+                }
             </div>
         </div>
     );
