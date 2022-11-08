@@ -55,7 +55,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className='bg-base-100 mt-20 py-10'>
+                <div className='bg-base-100 mt-20 p-10'>
                     <div className='w-10/12 max-w-screen-xl mx-auto flex justify-between items-center'>
                         <div className='flex-1'>
                             <img className='w-10/12' src={customer} alt="" />

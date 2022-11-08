@@ -1,8 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/images/logo.png'
+import { useAuth } from '../../contexts/AuthProvider';
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
+    const handleLogout = () => {
+        logOut().then(() => { }).catch(err => console.log(err.message));
+    }
     return (
         <div className="w-10/12 max-w-screen-xl mx-auto navbar px-0 py-3">
             <div className="navbar-start">
@@ -27,13 +32,26 @@ const Navbar = () => {
                     <li className='hover:text-orange-500'><Link to="/">Home</Link></li>
                     <li className='hover:text-orange-500'><Link to="/">Menu</Link></li>
                     <li className='hover:text-orange-500'><Link to="/services">Services</Link></li>
-                    <li className='hover:text-orange-500'><Link to="/">Contact</Link></li>
+                    {
+                        user && user.uid &&
+                        <li className='hover:text-orange-500'><Link to="/">My Reviews</Link></li>
+                    }
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn btn-theme">Login</Link>
+                {
+                    user && user.uid ?
+                        <>
+                            <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
+                                <img className='w-10 rounded-full mr-3' src={user.photoURL} alt="" />
+                            </div>
+                            <button onClick={handleLogout} className="btn btn-theme">Logout</button>
+                        </>
+                        :
+                        <Link to="/login" className="btn btn-theme">Login</Link>
+                }
             </div>
-        </div>
+        </div >
     );
 };
 
