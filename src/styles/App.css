@@ -1,3 +1,7 @@
-.btn-theme-outline{
-    /* @apply  */
+.btn-theme{
+    @apply bg-orange-500 border-0 text-white px-8 rounded-full;
+}
+
+.btn-theme:hover{
+    @apply bg-orange-600;
 }

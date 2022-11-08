@@ -4,7 +4,7 @@ import logo from '../../assets/images/logo.png'
 
 const Navbar = () => {
     return (
-        <div className="w-10/12 max-w-screen-xl mx-auto navbar bg-base-100 px-0 py-3">
+        <div className="w-10/12 max-w-screen-xl mx-auto navbar px-0 py-3">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -23,15 +23,15 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal p-0">
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/">Menu</Link></li>
-                    <li><Link to="/services">Services</Link></li>
-                    <li><Link to="/">Contact</Link></li>
+                <ul className="flex gap-10 font-medium">
+                    <li className='hover:text-orange-500'><Link to="/">Home</Link></li>
+                    <li className='hover:text-orange-500'><Link to="/">Menu</Link></li>
+                    <li className='hover:text-orange-500'><Link to="/services">Services</Link></li>
+                    <li className='hover:text-orange-500'><Link to="/">Contact</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to="/login" className="btn btn-primary">Login</Link>
+                <Link to="/login" className="btn btn-theme">Login</Link>
             </div>
         </div>
     );

@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import banner from '../../assets/images/banner.jpg';
+import banner from '../../assets/images/banner-removebg-preview.png';
+import customer from '../../assets/images/customer.png';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
+import 'react-photo-view/dist/react-photo-view.css';
 
 const Home = () => {
     return (
@@ -13,66 +16,122 @@ const Home = () => {
                         Easy Pickup.
                     </h1>
                     <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary px-8">Get Started</button>
+                    <button className="btn btn-theme px-8">Get Started</button>
                 </div>
                 <div>
                     <img className='w-5/6 ml-auto' src={banner} alt="" />
                 </div>
             </div>
-            <div className='bg-base-200 mx-auto py-20'>
+            <div className='bg-base-200 mx-auto pt-20'>
                 <div className='w-10/12 max-w-screen-xl mx-auto '>
-                    <h3 className='text-3xl font-medium mb-5'>Popular Foods</h3>
+                    <h3 className='text-3xl font-medium mb-5 text-black'>Popular Foods</h3>
                     <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
                         <div className="card bg-base-100 shadow-xl">
-                            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                            <PhotoProvider>
+                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
+                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
+                                </PhotoView>
+                            </PhotoProvider>
                             <div className="card-body">
+                                <div className="card-actions">
+                                    <div className="badge badge-outline">Fashion</div>
+                                    <div className="badge badge-outline">Products</div>
+                                </div>
                                 <h2 className="card-title">
                                     Shoes!
                                     <div className="badge badge-secondary">NEW</div>
                                 </h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
+                                <small>If a dog chews shoes whose shoes does he choose?</small>
+                                <button className='btn btn-theme'>Details</button>
                             </div>
                         </div>
                         <div className="card bg-base-100 shadow-xl">
-                            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                            <PhotoProvider>
+                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
+                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
+                                </PhotoView>
+                            </PhotoProvider>
                             <div className="card-body">
+                                <div className="card-actions">
+                                    <div className="badge badge-outline">Fashion</div>
+                                    <div className="badge badge-outline">Products</div>
+                                </div>
                                 <h2 className="card-title">
                                     Shoes!
                                     <div className="badge badge-secondary">NEW</div>
                                 </h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
+                                <small>If a dog chews shoes whose shoes does he choose?</small>
+                                <button className='btn btn-theme'>Details</button>
                             </div>
                         </div>
                         <div className="card bg-base-100 shadow-xl">
-                            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                            <PhotoProvider>
+                                <PhotoView src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg">
+                                    <figure><img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/birriaramen2-1664194907.jpg" alt="Shoes" /></figure>
+                                </PhotoView>
+                            </PhotoProvider>
                             <div className="card-body">
+                                <div className="card-actions">
+                                    <div className="badge badge-outline">Fashion</div>
+                                    <div className="badge badge-outline">Products</div>
+                                </div>
                                 <h2 className="card-title">
                                     Shoes!
                                     <div className="badge badge-secondary">NEW</div>
                                 </h2>
-                                <p>If a dog chews shoes whose shoes does he choose?</p>
-                                <div className="card-actions justify-end">
-                                    <div className="badge badge-outline">Fashion</div>
-                                    <div className="badge badge-outline">Products</div>
-                                </div>
+                                <small>If a dog chews shoes whose shoes does he choose?</small>
+                                <button className='btn btn-theme'>Details</button>
                             </div>
                         </div>
                     </div>
                     <div className='mt-12 flex justify-center'>
-                        <Link to="/services"><button className="btn btn-warning">See All</button></Link>
+                        <Link to="/services"><button className="btn btn-theme">See All</button></Link>
                     </div>
                 </div>
-            </div>
-            <div className='newsletter'>
-                Dome
+                <div className='w-10/12 max-w-screen-xl mx-auto pt-20'>
+                    <h2 className='text-3xl font-medium text-center mb-10 text-black'>How it works</h2>
+                    <div className='grid grid-cols-3 gap-10 text-center'>
+                        <div className='bg-base-100 p-5 py-8 rounded-t-[50px]'>
+                            <img className='mx-auto' src="https://img.icons8.com/bubbles/50/null/brunette-girl-phone-call.png" alt='' />
+                            <h4 className='text-lg font-medium my-1'>Order via website</h4>
+                            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, iusto? Impedit sapiente pariatur deleniti quod necessitatibus aperiam.</small>
+                        </div>
+                        <div className='bg-base-100 p-5 py-8 rounded-t-[50px]'>
+                            <img className='mx-auto' src="https://img.icons8.com/bubbles/50/null/steak.png" alt='' />
+                            <h4 className='text-lg font-medium my-1'>Choose your food</h4>
+                            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, iusto? Impedit sapiente pariatur deleniti quod necessitatibus aperiam.</small>
+                        </div>
+                        <div className='bg-base-100 p-5 py-8 rounded-t-[50px]'>
+                            <img className='mx-auto' src="https://img.icons8.com/bubbles/50/null/person-laying-down.png" alt='' />
+                            <h4 className='text-lg font-medium my-1'>Enjoy</h4>
+                            <small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, iusto? Impedit sapiente pariatur deleniti quod necessitatibus aperiam.</small>
+                        </div>
+                    </div>
+                </div>
+                <div className='bg-base-100 mt-20 py-10'>
+                    <div className='w-10/12 max-w-screen-xl mx-auto flex justify-between items-center'>
+                        <div className='flex-1'>
+                            <img className='w-10/12' src={customer} alt="" />
+                        </div>
+                        <div className='flex-1 grid grid-cols-2 gap-8'>
+                            <h3 className='text-4xl font-bold'>
+                                Service <br /> shows good <br /> taste.
+                            </h3>
+                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                                <h1 className='text-5xl font-bold text-orange-500'>976</h1>
+                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                            </div>
+                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                                <h1 className='text-5xl font-bold text-orange-500'>976</h1>
+                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                            </div>
+                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                                <h1 className='text-5xl font-bold text-orange-500'>976</h1>
+                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
