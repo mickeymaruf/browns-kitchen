@@ -1,25 +1,27 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-import 'react-photo-view/dist/react-photo-view.css';
 import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ dish }) => {
-    const { _id, name, image, price, desc } = dish;
+    const { _id, name, image, is_new, price, desc } = dish;
     return (
         <div className="card bg-base-100 shadow-xl">
             <PhotoProvider>
                 <PhotoView src={image}>
-                    <figure><img src={image} alt="Shoes" /></figure>
+                    <figure><img className=' object-cover' src={image} alt="Shoes" /></figure>
                 </PhotoView>
             </PhotoProvider>
-            <div className="card-body">
+            <div className="card-body p-5">
                 <h2 className="card-title">
                     {name}
-                    <div className="badge bg-orange-500 text-white border-0">NEW</div>
+                    {
+                        is_new &&
+                        <div className="badge bg-orange-500 text-white border-0">NEW</div>
+                    }
                 </h2>
                 <p>Price: ${price}</p>
-                <small>${desc}</small>
-                <Link to={`/services/${_id}`}><button className='btn btn-theme'>Details</button></Link>
+                <small>{desc.length > 100 ? desc.slice(0, 100) + '...' : desc}</small>
+                <Link to={`/services/${_id}`}><button className='btn btn-theme w-full mt-2'>Details</button></Link>
             </div>
         </div>
     );
