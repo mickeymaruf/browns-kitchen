@@ -30,11 +30,13 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="flex gap-10 font-medium">
                     <li className='hover:text-orange-500'><Link to="/">Home</Link></li>
-                    <li className='hover:text-orange-500'><Link to="/">Menu</Link></li>
                     <li className='hover:text-orange-500'><Link to="/services">Services</Link></li>
                     {
                         user && user.uid &&
-                        <li className='hover:text-orange-500'><Link to="/">My Reviews</Link></li>
+                        <>
+                            <li className='hover:text-orange-500'><Link to="/add-service">Add Services</Link></li>
+                            <li className='hover:text-orange-500'><Link to="/">My Reviews</Link></li>
+                        </>
                     }
                 </ul>
             </div>
