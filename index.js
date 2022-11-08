@@ -61,7 +61,7 @@ const run = async () => {
         app.get('/reviews', async (req, res) => {
             const email = req.query.email;
             const query = { 'user.email': email };
-            const cursor = reviewCollection.find(query);
+            const cursor = reviewCollection.find(query).sort({ _id: -1 });
             const reviews = await cursor.toArray();
             res.send({
                 "status": "success",
@@ -73,6 +73,12 @@ const run = async () => {
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
             res.send({ result, review });
+        })
+        // delete review
+        app.delete('/reviews/:_id', async (req, res) => {
+            const _id = req.params._id;
+            const result = await reviewCollection.deleteOne({ _id: ObjectId(_id) });
+            res.send(result);
         })
     }
     finally {
