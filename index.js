@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const datetime = require('node-datetime')
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -15,24 +16,33 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 const run = async () => {
     try {
         const database = client.db("brownsKitchen");
-        const dishesCollection = database.collection("dishes");
+        const serviceCollection = database.collection("services");
 
-        app.get('/dishes', async (req, res) => {
+        // get services
+        app.get('/services', async (req, res) => {
             const size = parseInt(req.query.size);
-            const cursor = dishesCollection.find({}).limit(size);
-            const dishes = await cursor.toArray();
+            const cursor = serviceCollection.find({}).limit(size);
+            const services = await cursor.toArray();
             res.json({
                 "status": "success",
-                "data": dishes
+                "data": services
             })
         })
-        app.get('/dishes/:id', async (req, res) => {
+        // get service by id
+        app.get('/services/:id', async (req, res) => {
             const query = { _id: ObjectId(req.params.id) };
-            const dish = await dishesCollection.findOne(query);
+            const service = await serviceCollection.findOne(query);
             res.json({
                 "status": "success",
-                "data": dish
+                "data": service
             })
+        })
+        // create services
+        app.post('/services', async (req, res) => {
+            const service = req.body;
+            service.is_new = true;
+            const result = await serviceCollection.insertOne(service);
+            res.send(result);
         })
     }
     finally {
