@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import banner from '../../assets/images/banner-removebg-preview.png';
+import banner from '../../assets/images/banner.png';
 import customer from '../../assets/images/customer.png';
 
 import ServiceCard from '../Services/ServiceCard';

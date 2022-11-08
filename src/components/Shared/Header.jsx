@@ -9,7 +9,7 @@ const Navbar = () => {
         logOut().then(() => { }).catch(err => console.log(err.message));
     }
     return (
-        <div className="w-10/12 max-w-screen-xl mx-auto navbar px-0 py-3">
+        <div className="w-10/12 max-w-screen-xl mx-auto navbar px-0 py-5">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -17,14 +17,20 @@ const Navbar = () => {
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/">Menu</Link></li>
                         <li><Link to="/services">Services</Link></li>
-                        <li><Link to="/">Contact</Link></li>
+                        {
+                            user && user.uid &&
+                            <>
+                                <li><Link to="/add-service">Add Services</Link></li>
+                                <li><Link to="/myReviews">My Reviews</Link></li>
+                            </>
+                        }
+                        <li><Link to="/blog">Blog</Link></li>
                     </ul>
                 </div>
-                <Link to="/" className='flex items-center gap-3'>
-                    <img className='w-16' src={logo} alt="" />
-                    <h3 className='text-xl font-medium'>Browns Kitchen</h3>
+                <Link to="/" className='flex items-center gap-1'>
+                    <img className='w-14' src={logo} alt="" />
+                    <p className='logo-title uppercase text-lg text-orange-500 font-medium'>Browns<br />Kitchen</p>
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -38,6 +44,7 @@ const Navbar = () => {
                             <li className='hover:text-orange-500'><Link to="/myReviews">My Reviews</Link></li>
                         </>
                     }
+                    <li className='hover:text-orange-500'><Link to="/blog">Blog</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">
