@@ -69,12 +69,12 @@ const Home = () => {
                                 <p className='text-gray-500'>Satisfied <br /> Customer</p>
                             </div>
                             <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
-                                <h1 className='text-5xl font-bold text-orange-500'>976</h1>
-                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                                <h1 className='text-5xl font-bold text-orange-500'>12</h1>
+                                <p className='text-gray-500'>Best <br /> Dishes</p>
                             </div>
                             <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
-                                <h1 className='text-5xl font-bold text-orange-500'>976</h1>
-                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                                <h1 className='text-5xl font-bold text-orange-500'>1K+</h1>
+                                <p className='text-gray-500'>Foods <br /> Ordered</p>
                             </div>
                         </div>
                     </div>

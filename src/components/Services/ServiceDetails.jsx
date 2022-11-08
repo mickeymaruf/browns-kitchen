@@ -1,13 +1,49 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useAuth } from '../../contexts/AuthProvider';
+import { useForm } from "react-hook-form";
+import toast from 'react-hot-toast';
+import Review from './Review';
 
 const ServiceDetails = () => {
     const { user } = useAuth();
     const location = useLocation();
     const service = useLoaderData().data;
-    const { name, image, is_new, price, desc } = service;
+    const { _id, name, image, is_new, price, desc } = service;
+    const [reviews, setReviews] = useState([]);
+
+    // handle add review
+    const { register, handleSubmit, reset } = useForm();
+    const onSubmit = data => {
+        data.user = { email: user.email, name: user.displayName, image: user.photoURL };
+        data.service = _id;
+        fetch('http://localhost:5000/reviews', {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged === true) {
+                    reset();
+                    toast.success("Review added!");
+                }
+            })
+    }
+    // load reviews
+    useEffect(() => {
+        fetch(`http://localhost:5000/reviews/${_id}`)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    setReviews(data.data);
+                }
+            })
+    }, [_id])
+
     return (
         <div className='w-10/12 max-w-screen-xl mx-auto mb-20'>
             <div className='grid grid-cols-3 items-center gap-10 py-10 mb-10'>
@@ -33,32 +69,14 @@ const ServiceDetails = () => {
             <div>
                 <h3 className='text-3xl font-medium text-center mb-5'>Reviews and Ratings</h3>
                 <div className='grid grid-cols-2 gap-10'>
-                    <div className='flex gap-5 p-3 rounded-lg'>
-                        <img className='rounded-lg w-20 h-20' src="https://bslthemes.com/html/quickeat/assets/img/logos-2.jpg" alt="" />
-                        <div>
-                            <h4 className='text-xl font-bold'>Kennington Lane Cafe</h4>
-                            <small className='text-gray-500'>Non enim praesent elementum facilisis leo vel fringilla. Lectus proin nibh nisl condimentum id. Quis varius quam quisque id diam vel.</small>
-                        </div>
-                    </div>
-                    <div className='flex gap-5 p-3 rounded-lg'>
-                        <img className='rounded-lg w-20 h-20' src="https://bslthemes.com/html/quickeat/assets/img/logos-2.jpg" alt="" />
-                        <div>
-                            <h4 className='text-xl font-bold'>Kennington Lane Cafe</h4>
-                            <small className='text-gray-500'>Non enim praesent elementum facilisis leo vel fringilla. Lectus proin nibh nisl condimentum id. Quis varius quam quisque id diam vel.</small>
-                        </div>
-                    </div>
-                    <div className='flex gap-5 p-3 rounded-lg'>
-                        <img className='rounded-lg w-20 h-20' src="https://bslthemes.com/html/quickeat/assets/img/logos-2.jpg" alt="" />
-                        <div>
-                            <h4 className='text-xl font-bold'>Kennington Lane Cafe</h4>
-                            <small className='text-gray-500'>Non enim praesent elementum facilisis leo vel fringilla. Lectus proin nibh nisl condimentum id. Quis varius quam quisque id diam vel.</small>
-                        </div>
-                    </div>
+                    {
+                        reviews.map(review => <Review key={review._id} review={review} />)
+                    }
                 </div>
                 {
                     user && user.uid ?
-                        <form className='w-1/2 mt-8'>
-                            <textarea className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review"></textarea>
+                        <form onSubmit={handleSubmit(onSubmit)} className='w-1/2 mt-8'>
+                            <textarea {...register('review')} className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review" required></textarea>
                             <button className='btn btn-theme mt-2'>Submit</button>
                         </form>
                         :

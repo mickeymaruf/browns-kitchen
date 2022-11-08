@@ -1,19 +1,21 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const googleProvider = new GoogleAuthProvider();
 
 const SocialAuth = () => {
     const { providerLogin } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const handleSocialSignIn = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
                 if (user) {
-                    navigate("/");
+                    navigate(from);
                 }
             })
             .catch(error => console.log(error));
