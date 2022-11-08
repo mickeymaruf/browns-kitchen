@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useLocation } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { useAuth } from '../../contexts/AuthProvider';
 
 const ServiceDetails = () => {
-    const { user } = useAuth()
+    const { user } = useAuth();
+    const location = useLocation();
     const service = useLoaderData().data;
     const { name, image, is_new, price, desc } = service;
     return (
@@ -61,7 +62,7 @@ const ServiceDetails = () => {
                             <button className='btn btn-theme mt-2'>Submit</button>
                         </form>
                         :
-                        <p className='mt-5 pl-3 font-medium'>Please <Link className='font-bold underline text-orange-500' to="/login">Login</Link> to submit a review.</p>
+                        <p className='mt-5 pl-3 font-medium'>Please <Link className='font-bold underline text-orange-500' state={{ from: location }} to="/login" replace>Login</Link> to submit a review.</p>
                 }
             </div>
         </div>

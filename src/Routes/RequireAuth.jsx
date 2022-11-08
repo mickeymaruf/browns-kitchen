@@ -1,9 +1,10 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthProvider';
 
 const RequireAuth = ({ children }) => {
     const { user, loading } = useAuth();
+    const location = useLocation();
     if (loading) {
         return (
             <div className='pt-20 pb-28 flex justify-center' role="status">
@@ -18,7 +19,7 @@ const RequireAuth = ({ children }) => {
     if (user) {
         return children;
     }
-    return <Navigate to="/login" />
+    return <Navigate to="/login" state={{ from: location }} replace />
 };
 
 export default RequireAuth;

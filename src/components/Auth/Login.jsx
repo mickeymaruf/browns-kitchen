@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/login.png';
 import { useAuth } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
@@ -8,6 +8,8 @@ import SocialAuth from './SocialAuth';
 const Login = () => {
     const { login } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -15,7 +17,7 @@ const Login = () => {
         const password = form.password.value;
         login(email, password)
             .then(result => {
-                navigate("/");
+                navigate(from);
             })
             .catch(error => {
                 toast.error(error.message);
