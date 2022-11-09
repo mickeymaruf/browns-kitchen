@@ -23,7 +23,7 @@ const AddService = () => {
             })
     }
     return (
-        <div className='w-6/12 max-w-screen-xl mx-auto pb-20'>
+        <div className='w-11/12 md:w-8/12 lg:w-6/12 max-w-screen-xl mx-auto pb-20'>
             <h1 className='text-4xl font-medium text-center mb-5 mt-10'>Add a new recipe</h1>
             <form onSubmit={handleSubmit(onSubmit)} className="card-body border">
                 <div className="form-control">

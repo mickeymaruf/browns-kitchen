@@ -34,7 +34,7 @@ const Navbar = () => {
                 </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="flex gap-10 font-medium">
+                <ul className="flex gap-5 xl:gap-10 font-medium">
                     <li className='hover:text-orange-500'><Link to="/">Home</Link></li>
                     <li className='hover:text-orange-500'><Link to="/services">Services</Link></li>
                     {
@@ -54,7 +54,8 @@ const Navbar = () => {
                             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
                                 <img className='w-10 h-10 rounded-full mr-3' src={user.photoURL} alt="" />
                             </div>
-                            <button onClick={handleLogout} className="btn btn-theme">Logout</button>
+                            <button onClick={handleLogout} className="btn btn-sm bg-orange-500 hover:bg-orange-600 text-white border-0 rounded-full md:hidden">Logout</button>
+                            <button onClick={handleLogout} className="btn btn-theme hidden md:block">Logout</button>
                         </>
                         :
                         <Link to="/login" className="btn btn-theme">Login</Link>

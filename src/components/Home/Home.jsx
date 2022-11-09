@@ -10,15 +10,15 @@ const Home = () => {
     const services = useLoaderData().data;
     return (
         <div>
-            <div className="w-10/12 max-w-screen-xl mx-auto grid grid-cols-2 items-center justify-between pb-20">
+            <div className="w-10/12 max-w-screen-xl mx-auto grid  md:grid-cols-2 items-center justify-between pb-20 pt-5">
                 <div>
-                    <h1 className="text-6xl font-bold text-orange-500 leading-[1.1] font-banner-heading">
+                    <h1 className="text-6xl md:text-5xl lg:text-6xl font-bold text-orange-500 leading-[1.1] font-banner-heading">
                         Fastest <br />
                         Delivery &<br />
                         Easy Pickup.
                     </h1>
-                    <p className="py-6">
-                        Homemade Food delivered to your doorstep. Browns Kitchen is an online<br />  platform for ordering fresh homemade food, from the homechef's kitchen.
+                    <p className="py-6 text-sm lg:text-base">
+                        Homemade Food delivered to your doorstep. Browns Kitchen is an online platform for ordering fresh homemade food, from the homechef's kitchen.
                     </p>
                     <button className="btn btn-theme px-8">Get Started</button>
                 </div>
@@ -29,7 +29,7 @@ const Home = () => {
             <div className='bg-base-200 mx-auto pt-20'>
                 <div className='w-10/12 max-w-screen-xl mx-auto '>
                     <h3 className='text-3xl font-medium mb-5 text-orange-500'>Popular Foods</h3>
-                    <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-10'>
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10'>
                         {
                             services.map(service => <ServiceCard key={service._id} service={service} />)
                         }
@@ -40,7 +40,7 @@ const Home = () => {
                 </div>
                 <div className='w-10/12 max-w-screen-xl mx-auto pt-20'>
                     <h2 className='text-3xl font-medium text-center mb-10 text-black'>How it works</h2>
-                    <div className='grid grid-cols-3 gap-10 text-center'>
+                    <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-10 text-center'>
                         <div className='bg-base-100 p-5 py-8 rounded-t-[50px]'>
                             <img className='mx-auto' src="https://img.icons8.com/bubbles/50/null/brunette-girl-phone-call.png" alt='' />
                             <h4 className='text-lg font-medium my-1'>Order via website</h4>
@@ -58,26 +58,26 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className='bg-base-100 mt-20 p-10'>
-                    <div className='w-10/12 max-w-screen-xl mx-auto flex justify-between items-center'>
-                        <div className='flex-1'>
-                            <img className='w-10/12' src={customer} alt="" />
+                <div className='bg-base-100 mt-20 px-0 p-10'>
+                    <div className='w-10/12 max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-10 lg:gap-0'>
+                        <div className='md:flex-1'>
+                            <img className='w-10/12 mx-auto lg:ml-0' src={customer} alt="" />
                         </div>
-                        <div className='flex-1 grid grid-cols-2 gap-8'>
-                            <h3 className='text-4xl font-bold'>
-                                Service <br /> shows good <br /> taste.
+                        <div className='w-full md:flex-1 grid grid-cols-1 sm:grid-cols-2 items-center gap-8'>
+                            <h3 className='text-4xl text-center lg:text-left font-bold'>
+                                Service shows good taste.
                             </h3>
-                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                            <div className='border p-10 flex items-center gap-5 lg:gap-2 xl:gap-5 justify-center shadow-md rounded-xl'>
                                 <h1 className='text-5xl font-bold text-orange-500'>976</h1>
-                                <p className='text-gray-500'>Satisfied <br /> Customer</p>
+                                <p className='text-gray-500 text-base lg:text-sm xl:text-base'>Satisfied <br /> Customer</p>
                             </div>
-                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                            <div className='border p-10 flex items-center gap-5 lg:gap-2 xl:gap-5 justify-center shadow-md rounded-xl'>
                                 <h1 className='text-5xl font-bold text-orange-500'>12</h1>
-                                <p className='text-gray-500'>Best <br /> Dishes</p>
+                                <p className='text-gray-500 text-base lg:text-sm xl:text-base'>Best <br /> Dishes</p>
                             </div>
-                            <div className='bg-base-100 p-10 flex items-center gap-5 justify-center shadow-md rounded-xl'>
+                            <div className='border p-10 flex items-center gap-5 lg:gap-2 xl:gap-5 justify-center shadow-md rounded-xl'>
                                 <h1 className='text-5xl font-bold text-orange-500'>1K+</h1>
-                                <p className='text-gray-500'>Foods <br /> Ordered</p>
+                                <p className='text-gray-500 text-base lg:text-sm xl:text-base'>Foods <br /> Ordered</p>
                             </div>
                         </div>
                     </div>

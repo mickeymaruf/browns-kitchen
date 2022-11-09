@@ -29,11 +29,11 @@ const EditReview = () => {
     }
     return (
         <div className='w-10/12 max-w-screen-xl mx-auto pt-10 mb-20'>
-            <div className='w-1/2 mx-auto relative mb-5'>
+            <div className='md:w-5/6 lg:w-1/2 mx-auto relative mb-5'>
                 <Link to="/myReviews"><BsArrowLeftCircleFill className='w-7 h-7 cursor-pointer absolute text-orange-500 top-1/2 -translate-y-1/2 left-0' /></Link>
                 <h3 className='text-3xl font-medium text-center'>Edit Review</h3>
             </div>
-            <div className='w-1/2 mx-auto border border-orange-200 p-10 rounded-xl'>
+            <div className='md:w-5/6 lg:w-1/2 mx-auto border border-orange-200 p-10 rounded-xl'>
                 <div className='flex items-center gap-2'>
                     <img className='w-12 rounded-full' src={review.service_image} alt="" />
                     <h3 className="text-lg font-bold">{review.service_name}</h3>

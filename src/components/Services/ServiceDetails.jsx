@@ -51,8 +51,8 @@ const ServiceDetails = () => {
 
     return (
         <div className='w-10/12 max-w-screen-xl mx-auto mb-20'>
-            <div className='grid grid-cols-3 items-center gap-10 py-10 mb-10'>
-                <div className='col-span-1'>
+            <div className='md:grid grid-cols-3 items-center gap-10 py-10 mb-10'>
+                <div className='col-span-1 mb-5 md:mb-0'>
                     <PhotoProvider>
                         <PhotoView src={image}>
                             <figure><img className='rounded-2xl' src={image} alt="" /></figure>
@@ -73,14 +73,14 @@ const ServiceDetails = () => {
             </div>
             <div>
                 <h3 className='text-3xl font-medium text-center mb-5'>Reviews and Ratings</h3>
-                <div className='grid grid-cols-2 gap-10'>
+                <div className='grid md:grid-cols-2 gap-10'>
                     {
                         reviews.map(review => <Review key={review._id} review={review} />)
                     }
                 </div>
                 {
                     user && user.email ?
-                        <form onSubmit={handleSubmit(onSubmit)} className='w-1/2 mt-8'>
+                        <form onSubmit={handleSubmit(onSubmit)} className='lg:w-1/2 mt-8'>
                             <textarea {...register('review')} className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review" required></textarea>
                             <button className='btn btn-theme mt-2'>Submit</button>
                         </form>

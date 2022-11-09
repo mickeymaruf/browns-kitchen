@@ -50,11 +50,11 @@ const Register = () => {
     }
     return (
         <div className="hero w-10/12 max-w-screen-xl mx-auto pt-10 pb-20">
-            <div className="w-full flex items-start justify-around">
-                <div className="w-1/2 text-center lg:text-left">
+            <div className="w-full md:flex items-start justify-around">
+                <div className="hidden w-1/2 lg:block text-center lg:text-left">
                     <img src={loginImg} alt="" />
                 </div>
-                <div className="w-1/2 card max-w-sm shadow-2xl bg-base-100 relative">
+                <div className="sm:w-9/12 md:w-7/12 lg:w-5/12 xl:w-4/12 mx-auto xl:mx-0 lg:mr-0 shadow-2xl bg-base-100 relative rounded-xl">
                     <div className="card-body pb-5">
                         <h1 className="text-2xl font-bold">Register now!</h1>
                         <form onSubmit={handleSubmit(handleRegister)}>

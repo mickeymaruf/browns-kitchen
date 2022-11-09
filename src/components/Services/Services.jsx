@@ -23,7 +23,7 @@ const Services = () => {
                         <Spinner />
                     </div>
                     :
-                    <div className='w-10/12 max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 pt-3 pb-20'>
+                    <div className='w-10/12 max-w-screen-xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-10 pt-3 pb-20'>
                         {
                             services.map(service => <ServiceCard key={service._id} service={service} />)
                         }
