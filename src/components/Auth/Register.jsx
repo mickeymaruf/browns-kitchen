@@ -6,23 +6,21 @@ import toast from 'react-hot-toast';
 import useTitle from '../../hooks/useTitle';
 import SocialAuth from './SocialAuth';
 import Spinner from '../Others/Spinner';
+import { useForm } from "react-hook-form";
 
 const Register = () => {
     useTitle('Register');
     const [spinner, setSpinner] = useState(false);
-    const { register, updateUser } = useAuth();
+    const { createUser, updateUser } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
-    const handleRegister = (e) => {
+
+    const { register, handleSubmit, reset } = useForm();
+    const handleRegister = data => {
         setSpinner(true);
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const email = form.email.value;
-        const photoURL = form.photoURL.value;
-        const password = form.password.value;
-        register(email, password)
+        const { name, email, password, photoURL } = data;
+        createUser(email, password)
             .then(result => {
                 updateUser(name, photoURL)
                     .then(() => {
@@ -41,7 +39,7 @@ const Register = () => {
                                 localStorage.setItem('browns_kitchen_token', data.token);
                             })
                         // 
-                        form.reset();
+                        reset();
                         toast.success("Registration successful!");
                     }).catch(error => console.log(error.message));
             })
@@ -59,30 +57,30 @@ const Register = () => {
                 <div className="w-1/2 card max-w-sm shadow-2xl bg-base-100 relative">
                     <div className="card-body pb-5">
                         <h1 className="text-2xl font-bold">Register now!</h1>
-                        <form onSubmit={handleRegister}>
+                        <form onSubmit={handleSubmit(handleRegister)}>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' placeholder="Your name" className="input input-bordered" />
+                                <input type="text" {...register('name', { required: true })} placeholder="Your name" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="Your email" className="input input-bordered" />
+                                <input type="email" {...register('email', { required: true })} placeholder="Your email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Photo URL</span>
                                 </label>
-                                <input type="text" name='photoURL' placeholder="Your photo url" className="input input-bordered" />
+                                <input type="text" {...register('photoURL', { required: true })} placeholder="Your photo url" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="********" className="input input-bordered" />
+                                <input type="password" {...register('password', { required: true })} placeholder="********" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-4">
                                 <button className="btn btn-theme">Register</button>

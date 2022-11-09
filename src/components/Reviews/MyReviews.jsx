@@ -24,6 +24,10 @@ const MyReviews = () => {
                     setSpinner(false);
                 }
             })
+            .catch(error => {
+                setSpinner(false);
+                console.log(error);
+            })
     }, [user.email]);
 
     return (
@@ -37,7 +41,7 @@ const MyReviews = () => {
                     <div className='w-10/12 max-w-screen-xl mx-auto pt-10 mb-20'>
                         {
                             reviews.length < 1 ?
-                                <h3 className='text-5xl text-center mt-24 mb-52'>No reviews were added !</h3>
+                                <h3 className='text-5xl text-center mt-28 mb-52'>No reviews were added !</h3>
                                 :
                                 <>
                                     <h3 className='text-3xl font-medium text-center mb-10'>My Reviews</h3>

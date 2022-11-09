@@ -19,7 +19,7 @@ const ServiceCard = ({ service }) => {
                         <div className="badge bg-orange-500 text-white border-0">NEW</div>
                     }
                 </h2>
-                <p>Price: ${price}</p>
+                <p className='text-lg'>Price: ${price}</p>
                 <small>{desc.length > 100 ? desc.slice(0, 100) + '...' : desc}</small>
                 <Link to={`/services/${_id}`}><button className='btn btn-theme w-full mt-2'>View Details</button></Link>
             </div>
