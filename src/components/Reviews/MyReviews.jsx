@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const MyReviews = () => {
+    useTitle('My reviews');
     const { user } = useAuth();
     const [reviews, setReviews] = useState([]);
     // load reviews

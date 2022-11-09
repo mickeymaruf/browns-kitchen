@@ -1,8 +1,10 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
+    useTitle('Add service');
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         fetch('http://localhost:5000/services', {

@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import loginImg from '../../assets/images/login.png';
 import { useAuth } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
+    useTitle('Register');
     const { register, updateUser } = useAuth();
     const handleRegister = (e) => {
         e.preventDefault();

@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/AuthProvider';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
 import Review from '../Reviews/Review';
+import useTitle from '../../hooks/useTitle';
 
 const ServiceDetails = () => {
     const { user } = useAuth();
@@ -12,6 +13,7 @@ const ServiceDetails = () => {
     const service = useLoaderData().data;
     const { _id, name, image, is_new, price, desc } = service;
     const [reviews, setReviews] = useState([]);
+    useTitle(name);
 
     // handle add review
     const { register, handleSubmit, reset } = useForm();

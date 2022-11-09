@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import useTitle from '../../hooks/useTitle';
 import ServiceCard from './ServiceCard';
 
 const Services = () => {
+    useTitle('Services');
     const services = useLoaderData().data;
     return (
         <div className='w-10/12 max-w-screen-xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-10 pt-3 pb-20'>

@@ -2,10 +2,12 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import banner from '../../assets/images/banner.png';
 import customer from '../../assets/images/customer.png';
+import useTitle from '../../hooks/useTitle';
 
 import ServiceCard from '../Services/ServiceCard';
 
 const Home = () => {
+    useTitle('Home');
     const services = useLoaderData().data;
     return (
         <div>

@@ -4,8 +4,10 @@ import loginImg from '../../assets/images/login.png';
 import { useAuth } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import SocialAuth from './SocialAuth';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+    useTitle('Login');
     const { login } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
