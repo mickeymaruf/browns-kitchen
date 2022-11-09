@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
+const jwt = require('jsonwebtoken');
 const datetime = require('node-datetime')
 const app = express();
 const port = process.env.PORT || 5000;
@@ -8,6 +9,21 @@ const port = process.env.PORT || 5000;
 // middlewares
 app.use(cors());
 app.use(express.json());
+
+const verifyJWT = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(401).send({ message: "unauthorized access" });
+    }
+    const token = authHeader.split(" ")[1];
+    jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, decoded) => {
+        if (err) {
+            return res.status(403).send({ message: "Forbidden access" });
+        }
+        req.decoded = decoded;
+    })
+    next();
+}
 
 
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
@@ -18,6 +34,13 @@ const run = async () => {
         const database = client.db("brownsKitchen");
         const serviceCollection = database.collection("services");
         const reviewCollection = database.collection("reviews");
+
+        // 
+        app.post('/jwt', (req, res) => {
+            const user = req.body;
+            const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
+            res.json({ token });
+        })
 
         // get services
         app.get('/services', async (req, res) => {
@@ -58,8 +81,11 @@ const run = async () => {
             });
         })
         // get reviews by user email
-        app.get('/reviews', async (req, res) => {
+        app.get('/reviews', verifyJWT, async (req, res) => {
             const email = req.query.email;
+            if (req.decoded?.user !== email) {
+                return res.status(401).send({ message: "unauthorized access" });
+            }
             const query = { 'user.email': email };
             const cursor = reviewCollection.find(query).sort({ _id: -1 });
             const reviews = await cursor.toArray();
@@ -68,11 +94,31 @@ const run = async () => {
                 "data": reviews
             });
         })
+        app.get('/myReviews/:id', verifyJWT, async (req, res) => {
+            const query = { _id: ObjectId(req.params.id) };
+            const review = await reviewCollection.findOne(query);
+            res.json({
+                "status": "success",
+                "data": review
+            })
+        })
         // create review
         app.post('/reviews', async (req, res) => {
             const review = req.body;
             const result = await reviewCollection.insertOne(review);
             res.send({ result, review });
+        })
+        // update review
+        app.put('/reviews/:_id', async (req, res) => {
+            const review = req.body.review;
+            const query = { _id: ObjectId(req.params._id) };
+            const updateReview = {
+                $set: {
+                    review: review
+                }
+            };
+            const result = await reviewCollection.updateOne(query, updateReview);
+            res.send(result);
         })
         // delete review
         app.delete('/reviews/:_id', async (req, res) => {
