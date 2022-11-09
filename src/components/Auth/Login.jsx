@@ -1,28 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import loginImg from '../../assets/images/login.png';
 import { useAuth } from '../../contexts/AuthProvider';
 import toast from 'react-hot-toast';
 import SocialAuth from './SocialAuth';
 import useTitle from '../../hooks/useTitle';
+import Spinner from '../Others/Spinner';
 
 const Login = () => {
     useTitle('Login');
+    const [spinner, setSpinner] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const handleLogin = (e) => {
+        setSpinner(true);
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         login(email, password)
             .then(result => {
+                setSpinner(false);
                 navigate(from);
             })
             .catch(error => {
                 toast.error(error.message);
+                setSpinner(false);
             });
     }
     return (
@@ -31,7 +36,7 @@ const Login = () => {
                 <div className="w-1/2 text-center lg:text-left">
                     <img src={loginImg} alt="" />
                 </div>
-                <div className="w-1/2 card max-w-sm shadow-2xl bg-base-100">
+                <div className="w-1/2 card max-w-sm shadow-2xl bg-base-100 relative">
                     <div className="card-body pb-5">
                         <h1 className="text-2xl font-bold">Login now!</h1>
                         <form onSubmit={handleLogin} >
@@ -55,8 +60,14 @@ const Login = () => {
                             </div>
                             <small className='block text-center'>Don't have an account <Link className='text-orange-500' to="/register">Register</Link></small>
                         </form>
-                        <SocialAuth />
+                        <SocialAuth setSpinner={setSpinner} />
                     </div>
+                    {
+                        spinner &&
+                        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex justify-center items-center backdrop-blur-sm rounded-xl'>
+                            <Spinner />
+                        </div>
+                    }
                 </div>
             </div>
         </div>
