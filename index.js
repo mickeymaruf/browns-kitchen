@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const datetime = require('node-datetime')
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -73,7 +72,7 @@ const run = async () => {
         app.get('/reviews/:service_id', async (req, res) => {
             const service_id = req.params.service_id;
             const query = { service: service_id };
-            const cursor = reviewCollection.find(query);
+            const cursor = reviewCollection.find(query).sort({ _id: -1 });
             const reviews = await cursor.toArray();
             res.send({
                 "status": "success",
@@ -87,13 +86,14 @@ const run = async () => {
                 return res.status(401).send({ message: "unauthorized access" });
             }
             const query = { 'user.email': email };
-            const cursor = reviewCollection.find(query).sort({ _id: -1 });
+            const cursor = reviewCollection.find(query).sort({ createdAt: -1 });
             const reviews = await cursor.toArray();
             res.send({
                 "status": "success",
                 "data": reviews
             });
         })
+        // get user single review by review_id
         app.get('/myReviews/:id', verifyJWT, async (req, res) => {
             const query = { _id: ObjectId(req.params.id) };
             const review = await reviewCollection.findOne(query);
@@ -105,6 +105,7 @@ const run = async () => {
         // create review
         app.post('/reviews', async (req, res) => {
             const review = req.body;
+            review.createdAt = new Date();
             const result = await reviewCollection.insertOne(review);
             res.send({ result, review });
         })
