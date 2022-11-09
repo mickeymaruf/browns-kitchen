@@ -18,6 +18,17 @@ const SocialAuth = ({ setSpinner }) => {
                 const user = result.user;
                 if (user) {
                     navigate(from);
+                    fetch('http://localhost:5000/jwt', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+                        body: JSON.stringify({ user: result.user.email })
+                    })
+                        .then(res => res.json())
+                        .then(data => {
+                            localStorage.setItem('browns_kitchen_token', data.token);
+                        })
                 }
                 setSpinner(false)
             })

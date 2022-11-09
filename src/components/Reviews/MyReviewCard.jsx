@@ -22,16 +22,18 @@ const MyReviewCard = ({ review, setReviews }) => {
             })
     }
     return (
-        <div className='flex gap-5 p-3 rounded-lg shadow-md'>
-            <img className='rounded-lg w-20 h-20' src={service_image} alt={service_name} />
-            <div>
-                <h4 className='text-lg font-bold'>{service_name}</h4>
+        <div className='flex gap-5 p-2 rounded-lg shadow-md'>
+            <img className='rounded-lg w-24 h-24' src={service_image} alt={service_name} />
+            <div className='flex-1'>
+                <div className='flex'>
+                    <h4 className='text-lg font-bold'>{service_name}</h4>
+                    <div className='ml-auto'>
+                        <Link to={`/edit-review/${review._id}`}><button className="btn btn-sm btn-review mr-2">Edit</button></Link>
+                        <button onClick={handleDeleteReview} className='btn btn-sm btn-review'>Delete</button>
+                    </div>
+                </div>
                 <img className='w-8 rounded-full' src={profilePic} alt="" />
-                <small className='text-gray-500'>{review.review}</small>
-            </div>
-            <div className='ml-auto self-end'>
-                <Link to={`/edit-review/${review._id}`}><button className="btn btn-sm btn-review mr-2">Edit</button></Link>
-                <button onClick={handleDeleteReview} className='btn btn-sm btn-review'>Delete</button>
+                <p className='text-gray-500 text-sm mt-1'>{review.review}</p>
             </div>
         </div>
     )

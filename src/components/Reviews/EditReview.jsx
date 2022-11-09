@@ -3,10 +3,12 @@ import { useForm } from 'react-hook-form';
 import { Link, useLoaderData } from 'react-router-dom';
 import { BsArrowLeftCircleFill } from 'react-icons/bs';
 import toast from 'react-hot-toast';
+import useTitle from '../../hooks/useTitle';
 
 const EditReview = () => {
     const review = useLoaderData().data;
     const [reviewText, setReviewText] = useState(review.review);
+    useTitle(`Edit review`);
 
     const { register, handleSubmit } = useForm();
     const onSubmit = formData => {

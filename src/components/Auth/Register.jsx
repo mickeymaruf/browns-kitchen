@@ -25,9 +25,22 @@ const Register = () => {
         register(email, password)
             .then(result => {
                 updateUser(name, photoURL)
-                .then(() => {
+                    .then(() => {
                         setSpinner(false);
                         navigate(from);
+                        // storing access token
+                        fetch('http://localhost:5000/jwt', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+                            body: JSON.stringify({ user: result.user.email })
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                localStorage.setItem('browns_kitchen_token', data.token);
+                            })
+                        // 
                         form.reset();
                         toast.success("Registration successful!");
                     }).catch(error => console.log(error.message));
