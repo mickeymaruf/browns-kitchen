@@ -21,6 +21,7 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
     const updateUser = (name, photoURL) => {
+        setUser({ displayName: name, photoURL, email: auth.currentUser.email })
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photoURL
         })

@@ -79,7 +79,7 @@ const ServiceDetails = () => {
                     }
                 </div>
                 {
-                    user && user.uid ?
+                    user && user.email ?
                         <form onSubmit={handleSubmit(onSubmit)} className='w-1/2 mt-8'>
                             <textarea {...register('review')} className="w-full textarea border-2 h-24 textarea-warning" placeholder="Write a review" required></textarea>
                             <button className='btn btn-theme mt-2'>Submit</button>

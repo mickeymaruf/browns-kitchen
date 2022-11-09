@@ -2,6 +2,7 @@ import React from 'react';
 import { useAuth } from '../../contexts/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
 import { useLocation, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -21,7 +22,7 @@ const SocialAuth = ({ setSpinner }) => {
                 setSpinner(false)
             })
             .catch(error => {
-                console.log(error)
+                toast.error(error.message)
                 setSpinner(false);
             });
     }

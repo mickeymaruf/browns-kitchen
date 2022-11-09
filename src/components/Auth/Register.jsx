@@ -27,8 +27,8 @@ const Register = () => {
                 updateUser(name, photoURL)
                 .then(() => {
                         setSpinner(false);
-                        form.reset();
                         navigate(from);
+                        form.reset();
                         toast.success("Registration successful!");
                     }).catch(error => console.log(error.message));
             })

@@ -19,7 +19,7 @@ const Navbar = () => {
                         <li><Link to="/">Home</Link></li>
                         <li><Link to="/services">Services</Link></li>
                         {
-                            user && user.uid &&
+                            user && user.email &&
                             <>
                                 <li><Link to="/add-service">Add Services</Link></li>
                                 <li><Link to="/myReviews">My Reviews</Link></li>
@@ -38,7 +38,7 @@ const Navbar = () => {
                     <li className='hover:text-orange-500'><Link to="/">Home</Link></li>
                     <li className='hover:text-orange-500'><Link to="/services">Services</Link></li>
                     {
-                        user && user.uid &&
+                        user && user.email &&
                         <>
                             <li className='hover:text-orange-500'><Link to="/add-service">Add Services</Link></li>
                             <li className='hover:text-orange-500'><Link to="/myReviews">My Reviews</Link></li>
@@ -49,7 +49,7 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user && user.uid ?
+                    user && user.email ?
                         <>
                             <div className="tooltip tooltip-bottom" data-tip={user.displayName}>
                                 <img className='w-10 rounded-full mr-3' src={user.photoURL} alt="" />

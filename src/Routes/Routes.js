@@ -4,6 +4,7 @@ import Register from "../components/Auth/Register";
 import Home from "../components/Home/Home";
 import Blog from "../components/Others/Blog";
 import ErrorPage from "../components/Others/ErrorPage";
+import EditReview from "../components/Reviews/EditReview";
 import MyReviews from "../components/Reviews/MyReviews";
 import AddService from "../components/Services/AddService";
 import ServiceDetails from "../components/Services/ServiceDetails";
@@ -37,6 +38,15 @@ const router = createBrowserRouter([
             {
                 path: "myReviews",
                 element: <RequireAuth><MyReviews /></RequireAuth>,
+            },
+            {
+                path: "edit-review/:id",
+                element: <RequireAuth><EditReview /></RequireAuth>,
+                loader: ({ params }) => fetch(`http://localhost:5000/myReviews/${params.id}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('browns_kitchen_token')}`
+                    }
+                })
             },
             {
                 path: "login",
