@@ -24,7 +24,7 @@ const Login = () => {
             .then(result => {
                 setSpinner(false);
                 navigate(from);
-                fetch('http://localhost:5000/jwt', {
+                fetch('https://browns-kitchen-server.vercel.app/jwt', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
@@ -55,13 +55,13 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="text" {...register('email', {required: true})} placeholder="email" className="input input-bordered" />
+                                <input type="text" {...register('email', { required: true })} placeholder="email" className="input input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" {...register('password', {required: true})} placeholder="password" className="input input-bordered" />
+                                <input type="text" {...register('password', { required: true })} placeholder="password" className="input input-bordered" />
                                 <label className="label">
                                     <Link className="label-text-alt link link-hover">Forgot password?</Link>
                                 </label>

@@ -12,7 +12,7 @@ const EditReview = () => {
 
     const { register, handleSubmit } = useForm();
     const onSubmit = formData => {
-        fetch(`http://localhost:5000/reviews/${review._id}`, {
+        fetch(`https://browns-kitchen-server.vercel.app/reviews/${review._id}`, {
             method: "PUT",
             headers: {
                 'content-type': 'application/json',

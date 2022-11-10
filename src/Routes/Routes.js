@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-                loader: () => fetch('http://localhost:5000/services?size=3')
+                loader: () => fetch('https://browns-kitchen-server.vercel.app/services?size=3')
             },
             {
                 path: "services",
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
             {
                 path: "services/:id",
                 element: <ServiceDetails />,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({ params }) => fetch(`https://browns-kitchen-server.vercel.app/services/${params.id}`)
             },
             {
                 path: "add-service",
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: "edit-review/:id",
                 element: <RequireAuth><EditReview /></RequireAuth>,
-                loader: ({ params }) => fetch(`http://localhost:5000/myReviews/${params.id}`, {
+                loader: ({ params }) => fetch(`https://browns-kitchen-server.vercel.app/myReviews/${params.id}`, {
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('browns_kitchen_token')}`
                     }

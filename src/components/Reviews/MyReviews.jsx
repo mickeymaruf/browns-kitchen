@@ -12,7 +12,7 @@ const MyReviews = () => {
 
     // load reviews
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user.email}`, {
+        fetch(`https://browns-kitchen-server.vercel.app/reviews?email=${user.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('browns_kitchen_token')}`
             }
@@ -45,7 +45,7 @@ const MyReviews = () => {
                                 :
                                 <>
                                     <h3 className='text-3xl font-medium text-center mb-10'>My Reviews</h3>
-                                    <div className='grid lg:grid-cols-2 gap-10'>
+                                    <div className='grid lg:grid-cols-2 gap-10 items-start'>
                                         {
                                             reviews.map(review => <MyReviewCard
                                                 key={review._id}

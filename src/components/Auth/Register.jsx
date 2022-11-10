@@ -27,7 +27,7 @@ const Register = () => {
                         setSpinner(false);
                         navigate(from);
                         // storing access token
-                        fetch('http://localhost:5000/jwt', {
+                        fetch('https://browns-kitchen-server.vercel.app/jwt', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

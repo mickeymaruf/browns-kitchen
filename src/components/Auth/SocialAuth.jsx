@@ -18,7 +18,7 @@ const SocialAuth = ({ setSpinner }) => {
                 const user = result.user;
                 if (user) {
                     navigate(from);
-                    fetch('http://localhost:5000/jwt', {
+                    fetch('https://browns-kitchen-server.vercel.app/jwt', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
